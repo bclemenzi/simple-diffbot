@@ -7,7 +7,7 @@
   	<version>1.0.0</version>
   	<packaging>jar</packaging>
 
-  	<name>NFB Software Java-XML</name>
+  	<name>NFB Software Simple-Diffbot</name>
   	<description>The NFB Software Simple-Diffbot is a Java wrapper for the Diffbot.com API for website data extraction.</description>
   	<url>http://www.nfbsoftware.com</url>
   
