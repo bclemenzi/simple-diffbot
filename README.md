@@ -33,8 +33,10 @@ Article API
 String diffbotToken = "25...89e9";  //set your api token here
 DiffbotClient client = new DiffbotClient(diffbotToken);
 
+// Pass the desired website url to the Diffbot client
 Article articleValue = client.getArticle("http://www.mnh.si.edu/exhibits/losing_paradise");
         
+// Now lets print out all the available article attributes 
 System.out.println("Article DiffbotUri: " + articleValue.getDiffbotUri());
 System.out.println("Article Html: " + articleValue.getHtml());
 System.out.println("Article HumanLanguage: " + articleValue.getHumanLanguage());
@@ -83,8 +85,10 @@ Image API
 String diffbotToken = "25...89e9";  //set your api token here
 DiffbotClient client = new DiffbotClient(diffbotToken);
 
+// Pass the desired website url to the Diffbot client
 List<Image> imageList = client.getImages("http://www.mnh.si.edu/exhibits/losing_paradise");
 
+// Now lets print out all the available image attributes 
 int imageCount = 0;
 for(Image imageValue : imageList)
 {
@@ -110,8 +114,10 @@ Video API
 String diffbotToken = "25...89e9";  //set your api token here
 DiffbotClient client = new DiffbotClient(diffbotToken);
 
+// Pass the desired website url to the Diffbot client
 Video videoValue = client.getVideo("https://www.youtube.com/watch?v=MftOONlDQac");
         
+// Now lets print out all the available article attributes 
 System.out.println("Video Author: " + videoValue.getAuthor());
 System.out.println("Video Date: " + videoValue.getDate());
 System.out.println("Video DiffbotUri: " + videoValue.getDiffbotUri());
