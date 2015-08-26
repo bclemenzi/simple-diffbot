@@ -11,9 +11,9 @@ Features
   * Supports Video API v3
   * Published on Maven Central Repository
   
- Getting started
+Getting started
 ---------------
-### Including the Java library in your project
+Including the Java library in your project
 
 The easiest way to incorporate the SDK into your Java project is to use Maven. Simply add a new dependency to your `pom.xml`:
 
