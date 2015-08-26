@@ -15,7 +15,7 @@ Getting started
 ---------------
 Including the Java library in your project
 
-The easiest way to incorporate the SDK into your Java project is to use Maven. Simply add a new dependency to your `pom.xml`:
+The easiest way to incorporate the library into your Java project is to use Maven. Simply add a new dependency to your `pom.xml`:
 
 ```xml
 <dependency>
