@@ -1,16 +1,14 @@
 package com.nfbsoftware.diffbot;
 
-import java.util.List;
+import junit.framework.Assert;
+import junit.framework.Test;
+import junit.framework.TestCase;
+import junit.framework.TestSuite;
 
 import com.nfbsoftware.diffbot.model.Article;
 import com.nfbsoftware.diffbot.model.Image;
 import com.nfbsoftware.diffbot.model.Tag;
 import com.nfbsoftware.diffbot.model.Video;
-
-import junit.framework.Assert;
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 /**
  * 
@@ -19,7 +17,7 @@ import junit.framework.TestSuite;
  */
 public class DiffBotClientTest extends TestCase
 {
-    private String DIFFBOT_DEV_TOKEN = "25...6089e9";  //set your api token here
+    private String DIFFBOT_DEV_TOKEN = "3bc3...";  //set your api token here
     
     /**
      * Create the test case
@@ -48,7 +46,7 @@ public class DiffBotClientTest extends TestCase
         System.out.println("====> Starting DiffBotClientTest.testArticleApi");
         
         DiffBotClient client = new DiffBotClient(DIFFBOT_DEV_TOKEN);
-        
+
         /*
         Article articleValue = client.getArticle("http://www.mnh.si.edu/exhibits/losing_paradise");
         
@@ -146,10 +144,10 @@ public class DiffBotClientTest extends TestCase
     {
         System.out.println("====> Starting DiffBotClientTest.testVideoApi");
         
-        DiffBotClient client = new DiffBotClient(DIFFBOT_DEV_TOKEN);
+        DiffBotClient client = new DiffBotClient(DIFFBOT_DEV_TOKEN, "50000");
         
         /*
-        Video videoValue = client.getVideo("https://www.youtube.com/watch?v=MftOONlDQac");
+        Video videoValue = client.getVideo("http://discoverykids.com/videos/dog-catches-frisbee-slow-motion-the-discovery-slow-down");
         
         System.out.println("Video Author: " + videoValue.getAuthor());
         System.out.println("Video Date: " + videoValue.getDate());

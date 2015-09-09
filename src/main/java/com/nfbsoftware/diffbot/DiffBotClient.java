@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.nfbsoftware.diffbot.model.Article;
 import com.nfbsoftware.diffbot.model.ArticleResponse;
+import com.nfbsoftware.diffbot.model.ErrorResponse;
 import com.nfbsoftware.diffbot.model.Image;
 import com.nfbsoftware.diffbot.model.ImageResponse;
 import com.nfbsoftware.diffbot.model.Video;
@@ -21,6 +22,7 @@ import flexjson.JSONDeserializer;
 public class DiffBotClient
 {
     private String m_accessToken;
+    private String m_requestTimeout;
     
     private static final String DIFFBOT_ARTICLE_API = "http://api.diffbot.com/v3/article";
     private static final String DIFFBOT_IMAGE_API = "http://api.diffbot.com/v3/image";
@@ -28,11 +30,23 @@ public class DiffBotClient
     
     /**
      * 
-     * @param token the access token for the diffbot API
+     * @param accessToken for the diffbot API
      */
     public DiffBotClient(String accessToken)
     {
         m_accessToken = accessToken;
+        m_requestTimeout = "30000";
+    }
+    
+    /**
+     * 
+     * @param accessToken for the diffbot API
+     * @param timeoutMilliseconds
+     */
+    public DiffBotClient(String accessToken, String timeoutMilliseconds)
+    {
+        m_accessToken = accessToken;
+        m_requestTimeout = timeoutMilliseconds;
     }
     
     /**
@@ -142,11 +156,20 @@ public class DiffBotClient
     {
         WebPost webPostUtil = new WebPost();
         
-        String fullApiUrl = apiUrl + "?token=" + m_accessToken + "&url=" + URLEncoder.encode(pageUrl, "UTF-8");
+        String fullApiUrl = apiUrl + "?token=" + m_accessToken + "&timeout=" + m_requestTimeout + "&url=" + URLEncoder.encode(pageUrl, "UTF-8");
         webPostUtil.connect(fullApiUrl, "text/html", "GET");
         
         // Get the response for the API
         String apiResponse = webPostUtil.receive();
+        
+        // Check for an error code
+        if(apiResponse.contains("errorCode"))
+        {
+            JSONDeserializer<ErrorResponse> js = new JSONDeserializer<ErrorResponse>();
+            ErrorResponse errorResponse = js.deserialize(apiResponse, ErrorResponse.class); 
+            
+            throw new Exception(errorResponse.getError());
+        }
         
         return apiResponse;
     }

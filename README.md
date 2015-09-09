@@ -10,6 +10,7 @@ Features
   * Supports Image API v3
   * Supports Video API v3
   * Published on Maven Central Repository
+  * Support for setting the response timeout in the client constructor
   
 Getting started
 ---------------
@@ -21,12 +22,25 @@ The easiest way to incorporate the library into your Java project is to use Mave
 <dependency>
     <groupId>com.nfbsoftware</groupId>
 	<artifactId>simple-diffbot</artifactId>
-	<version>1.0.2</version>
+	<version>1.0.3</version>
 </dependency>
 ```
 
 Usage
 -----
+Client Options
+
+```java	
+String diffbotToken = "25...89e9";  //set your api token here
+DiffbotClient client = new DiffbotClient(diffbotToken);
+```
+
+```java	
+String diffbotToken = "25...89e9";  //set your api token here
+String timoutMS = "30000"; // Set the request time out in MS
+DiffbotClient client = new DiffbotClient(diffbotToken, timoutMS);
+```
+
 Article API
 
 ```java	
