@@ -51,6 +51,7 @@ DiffbotClient client = new DiffbotClient(diffbotToken);
 Article articleValue = client.getArticle("http://www.mnh.si.edu/exhibits/losing_paradise");
         
 // Now lets print out all the available article attributes 
+System.out.println("Article ID: " + articleValue.getId());
 System.out.println("Article DiffbotUri: " + articleValue.getDiffbotUri());
 System.out.println("Article Html: " + articleValue.getHtml());
 System.out.println("Article HumanLanguage: " + articleValue.getHumanLanguage());
@@ -64,6 +65,7 @@ System.out.println("Article Type: " + articleValue.getType());
 int imageCount = 0;
 for(Image imageValue : articleValue.getImages())
 {
+	System.out.println("Article Image[" + imageCount + "] ID: " + imageValue.getId());
 	System.out.println("Article Image[" + imageCount + "] DiffbotUri: " + imageValue.getDiffbotUri());
 	System.out.println("Article Image[" + imageCount + "] ResolvedPageUrl: " + imageValue.getResolvedPageUrl());
 	System.out.println("Article Image[" + imageCount + "] Title: " + imageValue.getTitle());
@@ -82,10 +84,10 @@ for(Image imageValue : articleValue.getImages())
 int tagCount = 0;
 for(Tag tagValue : articleValue.getTags())
 {
+	System.out.println("Article Tag[" + tagCount + "] ID: " + tagValue.getId());
 	System.out.println("Article Tag[" + tagCount + "] Label: " + tagValue.getLabel());
 	System.out.println("Article Tag[" + tagCount + "] Uri: " + tagValue.getUri());
 	System.out.println("Article Tag[" + tagCount + "] Count: " + tagValue.getCount());
-	System.out.println("Article Tag[" + tagCount + "] ID: " + tagValue.getId());
 	System.out.println("Article Tag[" + tagCount + "] Prevalence: " + tagValue.getPrevalence());
 	System.out.println("Article Tag[" + tagCount + "] Score: " + tagValue.getScore());
             
@@ -106,6 +108,7 @@ List<Image> imageList = client.getImages("http://www.mnh.si.edu/exhibits/losing_
 int imageCount = 0;
 for(Image imageValue : imageList)
 {
+	System.out.println("Image[" + imageCount + "] ID: " + imageValue.getId());
 	System.out.println("Image[" + imageCount + "] DiffbotUri: " + imageValue.getDiffbotUri());
 	System.out.println("Image[" + imageCount + "] ResolvedPageUrl: " + imageValue.getResolvedPageUrl());
 	System.out.println("Image[" + imageCount + "] Title: " + imageValue.getTitle());
@@ -132,6 +135,7 @@ DiffbotClient client = new DiffbotClient(diffbotToken);
 Video videoValue = client.getVideo("https://www.youtube.com/watch?v=MftOONlDQac");
         
 // Now lets print out all the available article attributes 
+System.out.println("Video ID: " + videoValue.getId());
 System.out.println("Video Author: " + videoValue.getAuthor());
 System.out.println("Video Date: " + videoValue.getDate());
 System.out.println("Video DiffbotUri: " + videoValue.getDiffbotUri());
@@ -151,6 +155,7 @@ System.out.println("Video ViewCount: " + videoValue.getViewCount());
 int imageCount = 0;
 for(Image imageValue : videoValue.getImages())
 {
+	System.out.println("Video Image[" + imageCount + "] ID: " + imageValue.getId());
 	System.out.println("Video Image[" + imageCount + "] DiffbotUri: " + imageValue.getDiffbotUri());
 	System.out.println("Video Image[" + imageCount + "] ResolvedPageUrl: " + imageValue.getResolvedPageUrl());
 	System.out.println("Video Image[" + imageCount + "] Title: " + imageValue.getTitle());
