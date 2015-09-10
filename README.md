@@ -9,8 +9,8 @@ Features
   * Supports Article API v3
   * Supports Image API v3
   * Supports Video API v3
-  * Published on Maven Central Repository
   * Support for setting the response timeout in the client constructor
+  * Published on Maven Central Repository
   
 Getting started
 ---------------
