@@ -2,6 +2,9 @@ package com.nfbsoftware.diffbot.model;
 
 import java.math.BigInteger;
 
+import com.nfbsoftware.util.NfbUUID;
+import com.nfbsoftware.util.StringUtil;
+
 /**
  * 
  * @author brendanclemenzi
@@ -9,6 +12,7 @@ import java.math.BigInteger;
  */
 public class Image
 {
+    private String m_id;
     private String m_title;
     private BigInteger m_height;
     private BigInteger m_naturalHeight;
@@ -23,7 +27,16 @@ public class Image
     
     public String getId()
     {
-        return m_diffbotUri;
+        if(StringUtil.isNullOrEmpty(m_id))
+        {
+            m_id = NfbUUID.generateGUID();
+        }
+        
+        return m_id;
+    }
+    public void setId(String id)
+    {
+        m_id = id;
     }
     
     public String getTitle()

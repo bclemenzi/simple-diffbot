@@ -4,6 +4,9 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.nfbsoftware.util.NfbUUID;
+import com.nfbsoftware.util.StringUtil;
+
 /**
  * 
  * @author brendanclemenzi
@@ -11,6 +14,7 @@ import java.util.List;
  */
 public class Video
 {
+    private String m_id;
     private String m_text;
     private String m_pageUrl;
     private BigInteger m_naturalHeight;
@@ -31,7 +35,16 @@ public class Video
     
     public String getId()
     {
-        return m_diffbotUri;
+        if(StringUtil.isNullOrEmpty(m_id))
+        {
+            m_id = NfbUUID.generateGUID();
+        }
+        
+        return m_id;
+    }
+    public void setId(String id)
+    {
+        m_id = id;
     }
     
     public String getText()

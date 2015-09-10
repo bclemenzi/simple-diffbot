@@ -50,6 +50,7 @@ public class DiffBotClientTest extends TestCase
         /*
         Article articleValue = client.getArticle("http://www.mnh.si.edu/exhibits/losing_paradise");
         
+        System.out.println("Article ID: " + articleValue.getId());
         System.out.println("Article DiffbotUri: " + articleValue.getDiffbotUri());
         System.out.println("Article Html: " + articleValue.getHtml());
         System.out.println("Article HumanLanguage: " + articleValue.getHumanLanguage());
@@ -63,6 +64,7 @@ public class DiffBotClientTest extends TestCase
         int imageCount = 0;
         for(Image imageValue : articleValue.getImages())
         {
+            System.out.println("Article Image[" + imageCount + "] ID: " + imageValue.getId());
             System.out.println("Article Image[" + imageCount + "] DiffbotUri: " + imageValue.getDiffbotUri());
             System.out.println("Article Image[" + imageCount + "] ResolvedPageUrl: " + imageValue.getResolvedPageUrl());
             System.out.println("Article Image[" + imageCount + "] Title: " + imageValue.getTitle());
@@ -81,10 +83,10 @@ public class DiffBotClientTest extends TestCase
         int tagCount = 0;
         for(Tag tagValue : articleValue.getTags())
         {
+            System.out.println("Article Tag[" + tagCount + "] ID: " + tagValue.getId());
             System.out.println("Article Tag[" + tagCount + "] Label: " + tagValue.getLabel());
             System.out.println("Article Tag[" + tagCount + "] Uri: " + tagValue.getUri());
             System.out.println("Article Tag[" + tagCount + "] Count: " + tagValue.getCount());
-            System.out.println("Article Tag[" + tagCount + "] ID: " + tagValue.getId());
             System.out.println("Article Tag[" + tagCount + "] Prevalence: " + tagValue.getPrevalence());
             System.out.println("Article Tag[" + tagCount + "] Score: " + tagValue.getScore());
             
@@ -114,6 +116,7 @@ public class DiffBotClientTest extends TestCase
         int imageCount = 0;
         for(Image imageValue : imageList)
         {
+            System.out.println("Image[" + imageCount + "] ID: " + imageValue.getId());
             System.out.println("Image[" + imageCount + "] DiffbotUri: " + imageValue.getDiffbotUri());
             System.out.println("Image[" + imageCount + "] ResolvedPageUrl: " + imageValue.getResolvedPageUrl());
             System.out.println("Image[" + imageCount + "] Title: " + imageValue.getTitle());
@@ -149,6 +152,7 @@ public class DiffBotClientTest extends TestCase
         /*
         Video videoValue = client.getVideo("http://discoverykids.com/videos/dog-catches-frisbee-slow-motion-the-discovery-slow-down");
         
+        System.out.println("Video ID: " + videoValue.getId());
         System.out.println("Video Author: " + videoValue.getAuthor());
         System.out.println("Video Date: " + videoValue.getDate());
         System.out.println("Video DiffbotUri: " + videoValue.getDiffbotUri());
