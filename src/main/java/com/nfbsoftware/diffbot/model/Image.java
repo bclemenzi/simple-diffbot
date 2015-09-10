@@ -21,6 +21,11 @@ public class Image
     private String m_resolvedPageUrl;
     private String m_xpath;
     
+    public String getId()
+    {
+        return m_diffbotUri;
+    }
+    
     public String getTitle()
     {
         return m_title;

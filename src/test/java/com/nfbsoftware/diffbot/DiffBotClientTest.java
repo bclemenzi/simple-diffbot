@@ -189,4 +189,35 @@ public class DiffBotClientTest extends TestCase
         
         System.out.println("====> Finished DiffBotClientTest.testVideoApi");
     }
+    
+    /**
+     * 
+     * @throws Exception
+     */
+    public void testLoopOverflow() throws Exception
+    {
+        System.out.println("====> Starting DiffBotClientTest.testLoopOverflow");
+        
+        DiffBotClient client = new DiffBotClient(DIFFBOT_DEV_TOKEN, "50000");
+        
+        // Loop 20 times to try and trigger the overflow exception
+        for(int i = 0; i < 20; i++)
+        {
+            try
+            {
+                //Article articleValue = client.getArticle("http://www.mnh.si.edu/exhibits/losing_paradise");
+                
+                //System.out.println("========> testLoopOverflow success: " + articleValue.getId());
+            }
+            catch(Exception e)
+            {
+                System.out.println("========> testLoopOverflow error: " + e.getMessage());
+            }
+        }
+        
+        
+        assertTrue(true);
+        
+        System.out.println("====> Finished DiffBotClientTest.testLoopOverflow");
+    }
 }

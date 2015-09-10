@@ -22,6 +22,11 @@ public class Article
     private List<Tag> m_tags = new ArrayList<Tag>();
     private List<Image> m_images = new ArrayList<Image>();
     
+    public String getId()
+    {
+        return m_diffbotUri;
+    }
+    
     public String getText()
     {
         return m_text;

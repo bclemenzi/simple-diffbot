@@ -29,6 +29,11 @@ public class Video
     
     private List<Image> m_images = new ArrayList<Image>();
     
+    public String getId()
+    {
+        return m_diffbotUri;
+    }
+    
     public String getText()
     {
         return m_text;
