@@ -48,7 +48,7 @@ public class DiffBotClientTest extends TestCase
         DiffBotClient client = new DiffBotClient(DIFFBOT_DEV_TOKEN);
 
         /*
-        Article articleValue = client.getArticle("http://www.mnh.si.edu/exhibits/losing_paradise");
+        Article articleValue = client.getArticle("http://testprep.about.com/od/tipsfortesting/tp/7-Ways-Youre-Sabotaging-Your-Own-Test-Score.htm");
         
         System.out.println("Article ID: " + articleValue.getId());
         System.out.println("Article DiffbotUri: " + articleValue.getDiffbotUri());
@@ -60,6 +60,7 @@ public class DiffBotClientTest extends TestCase
         System.out.println("Article Text: " + articleValue.getText());
         System.out.println("Article Title: " + articleValue.getTitle());
         System.out.println("Article Type: " + articleValue.getType());
+        System.out.println("Article Author: " + articleValue.getAuthor());
         
         int imageCount = 0;
         for(Image imageValue : articleValue.getImages())

@@ -15,6 +15,7 @@ public class Article
     private String m_id;
     private String m_text;
     private String m_title;
+    private String m_author;
     private String m_diffbotUri;
     private String m_pageUrl;
     private String m_humanLanguage;
@@ -38,6 +39,15 @@ public class Article
     public void setId(String id)
     {
         m_id = id;
+    }
+    
+    public String getAuthor()
+    {
+        return m_author;
+    }
+    public void setAuthor(String author)
+    {
+        m_author = author;
     }
     
     public String getText()
