@@ -24,6 +24,7 @@ public class Image
     private String m_type;
     private String m_resolvedPageUrl;
     private String m_xpath;
+    private String m_pageUrl;
     
     public String getId()
     {
@@ -37,6 +38,15 @@ public class Image
     public void setId(String id)
     {
         m_id = id;
+    }
+    
+    public String getPageUrl()
+    {
+        return m_pageUrl;
+    }
+    public void setPageUrl(String pageUrl)
+    {
+        m_pageUrl = pageUrl;
     }
     
     public String getTitle()

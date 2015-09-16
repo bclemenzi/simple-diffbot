@@ -17,6 +17,7 @@ public class Video
     private String m_id;
     private String m_text;
     private String m_pageUrl;
+    private String m_embedUrl;
     private BigInteger m_naturalHeight;
     private String m_humanLanguage;
     private String m_date;
@@ -63,6 +64,15 @@ public class Video
     public void setPageUrl(String pageUrl)
     {
         m_pageUrl = pageUrl;
+    }
+    
+    public String getEmbedUrl()
+    {
+        return m_embedUrl;
+    }
+    public void setEmbedUrl(String embedUrl)
+    {
+        m_embedUrl = embedUrl;
     }
     
     public BigInteger getNaturalHeight()
