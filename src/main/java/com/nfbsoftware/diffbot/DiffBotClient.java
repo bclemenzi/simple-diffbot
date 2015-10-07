@@ -171,6 +171,8 @@ public class DiffBotClient
             throw new Exception(errorResponse.getError());
         }
         
+        webPostUtil.disconnect();
+        
         return apiResponse;
     }
 }
