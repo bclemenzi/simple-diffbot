@@ -157,7 +157,7 @@ public class DiffBotClient
         WebPost webPostUtil = new WebPost();
         
         String fullApiUrl = apiUrl + "?token=" + m_accessToken + "&timeout=" + m_requestTimeout + "&url=" + URLEncoder.encode(pageUrl, "UTF-8");
-        webPostUtil.connect(fullApiUrl, "text/html", "GET");
+        webPostUtil.connect(fullApiUrl, "text/html; charset=utf-8", "GET");
         
         // Get the response for the API
         String apiResponse = webPostUtil.receive();

@@ -1,7 +1,9 @@
 package com.nfbsoftware.util;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
@@ -10,6 +12,7 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -74,7 +77,7 @@ public class WebPost
                 m_outputStream = m_httpUrlConnection.getOutputStream();
             }
             
-            m_outputStream.write(sRequest.getBytes());
+            m_outputStream.write(sRequest.getBytes("UTF-8"));
             m_outputStream.flush();
         }
         catch(IOException e)
@@ -97,7 +100,7 @@ public class WebPost
                 m_outputStream = m_httpsUrlConnection.getOutputStream();
             }
             
-            m_outputStream.write(sRequest.getBytes());
+            m_outputStream.write(sRequest.getBytes("UTF-8"));
             m_outputStream.flush();
         }
         catch(IOException e)
@@ -234,7 +237,7 @@ public class WebPost
             
             // There is no change from this point on
             Base64 encoder = new Base64();
-            String encoding = encoder.encodeToString(sEncoding.getBytes());
+            String encoding = encoder.encodeToString(sEncoding.getBytes("UTF-8"));
             
             String sUserNamePasswd = "Basic " + encoding;
             
@@ -349,7 +352,7 @@ public class WebPost
             
             m_httpUrlConnection.setRequestProperty("Content-Length", String.valueOf(encodedData.length()));
             OutputStream os = m_httpUrlConnection.getOutputStream();
-            os.write(encodedData.getBytes());
+            os.write(encodedData.getBytes("UTF-8"));
         }
     }
     
@@ -380,21 +383,21 @@ public class WebPost
     {
         try
         {
-            StringBuffer responseBuffer = new StringBuffer (500);
+            StringBuffer responseBuffer = new StringBuffer(500);
             
             if (m_inputStream == null)
             {
                 m_inputStream = m_httpUrlConnection.getInputStream();
             }
             
-            int kar; 
-            char ch;
-            while ( (kar = m_inputStream.read () ) != -1 )
+            BufferedReader in = new BufferedReader(new InputStreamReader(m_inputStream, "UTF-8"));
+            String readLine;
+
+            while ((readLine = in.readLine()) != null) 
             {
-              ch = (char) kar; responseBuffer.append(ch);
+                responseBuffer.append(readLine);
             }
-            m_inputStream.close();
-            
+
             return new String(responseBuffer);
         }
         catch(IOException e)
