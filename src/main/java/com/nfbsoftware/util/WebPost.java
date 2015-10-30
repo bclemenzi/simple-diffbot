@@ -1,9 +1,7 @@
 package com.nfbsoftware.util;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
@@ -12,7 +10,6 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -77,7 +74,7 @@ public class WebPost
                 m_outputStream = m_httpUrlConnection.getOutputStream();
             }
             
-            m_outputStream.write(sRequest.getBytes("UTF-8"));
+            m_outputStream.write(sRequest.getBytes());
             m_outputStream.flush();
         }
         catch(IOException e)
@@ -100,7 +97,7 @@ public class WebPost
                 m_outputStream = m_httpsUrlConnection.getOutputStream();
             }
             
-            m_outputStream.write(sRequest.getBytes("UTF-8"));
+            m_outputStream.write(sRequest.getBytes());
             m_outputStream.flush();
         }
         catch(IOException e)
@@ -344,7 +341,7 @@ public class WebPost
      * @throws UnsupportedEncodingException
      * @throws IOException
      */
-    public void addRequestParameters(String requestParameters) throws UnsupportedEncodingException, IOException
+    private void addRequestParameters(String requestParameters) throws UnsupportedEncodingException, IOException
     {
         if(!StringUtil.isNullOrEmpty(requestParameters))
         {
@@ -352,21 +349,7 @@ public class WebPost
             
             m_httpUrlConnection.setRequestProperty("Content-Length", String.valueOf(encodedData.length()));
             OutputStream os = m_httpUrlConnection.getOutputStream();
-            os.write(encodedData.getBytes("UTF-8"));
-        }
-    }
-    
-    /**
-     * 
-     * @param parameterMap
-     */
-    public void addRequestParameters(Map<String, String> parameterMap)
-    {
-        for(String paramKey : parameterMap.keySet())
-        {
-            String paramValue = StringUtil.emptyIfNull(parameterMap.get(paramKey));
-            
-            m_httpUrlConnection.setRequestProperty(paramKey, paramValue);
+            os.write(encodedData.getBytes());
         }
     }
 
@@ -383,21 +366,21 @@ public class WebPost
     {
         try
         {
-            StringBuffer responseBuffer = new StringBuffer(500);
+            StringBuffer responseBuffer = new StringBuffer (500);
             
             if (m_inputStream == null)
             {
                 m_inputStream = m_httpUrlConnection.getInputStream();
             }
             
-            BufferedReader in = new BufferedReader(new InputStreamReader(m_inputStream, "UTF-8"));
-            String readLine;
-
-            while ((readLine = in.readLine()) != null) 
+            int kar; 
+            char ch;
+            while ( (kar = m_inputStream.read () ) != -1 )
             {
-                responseBuffer.append(readLine);
+              ch = (char) kar; responseBuffer.append(ch);
             }
-
+            m_inputStream.close();
+            
             return new String(responseBuffer);
         }
         catch(IOException e)
@@ -506,4 +489,3 @@ public class WebPost
         }
     }
 }
-

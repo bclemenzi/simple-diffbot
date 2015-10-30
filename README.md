@@ -22,7 +22,7 @@ The easiest way to incorporate the library into your Java project is to use Mave
 <dependency>
     <groupId>com.nfbsoftware</groupId>
 	<artifactId>simple-diffbot</artifactId>
-	<version>1.0.9</version>
+	<version>1.0.10</version>
 </dependency>
 ```
 
