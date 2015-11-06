@@ -1,7 +1,9 @@
 package com.nfbsoftware.util;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
@@ -74,7 +76,7 @@ public class WebPost
                 m_outputStream = m_httpUrlConnection.getOutputStream();
             }
             
-            m_outputStream.write(sRequest.getBytes());
+            m_outputStream.write(sRequest.getBytes("UTF-8"));
             m_outputStream.flush();
         }
         catch(IOException e)
@@ -97,7 +99,7 @@ public class WebPost
                 m_outputStream = m_httpsUrlConnection.getOutputStream();
             }
             
-            m_outputStream.write(sRequest.getBytes());
+            m_outputStream.write(sRequest.getBytes("UTF-8"));
             m_outputStream.flush();
         }
         catch(IOException e)
@@ -366,21 +368,21 @@ public class WebPost
     {
         try
         {
-            StringBuffer responseBuffer = new StringBuffer (500);
+            StringBuffer responseBuffer = new StringBuffer(500);
             
             if (m_inputStream == null)
             {
                 m_inputStream = m_httpUrlConnection.getInputStream();
             }
             
-            int kar; 
-            char ch;
-            while ( (kar = m_inputStream.read () ) != -1 )
+            BufferedReader in = new BufferedReader(new InputStreamReader(m_inputStream, "UTF-8"));
+            String readLine;
+
+            while ((readLine = in.readLine()) != null) 
             {
-              ch = (char) kar; responseBuffer.append(ch);
+                responseBuffer.append(readLine);
             }
-            m_inputStream.close();
-            
+
             return new String(responseBuffer);
         }
         catch(IOException e)
@@ -393,21 +395,21 @@ public class WebPost
     {
         try
         {
-            StringBuffer responseBuffer = new StringBuffer (500);
+            StringBuffer responseBuffer = new StringBuffer(500);
             
             if (m_inputStream == null)
             {
                 m_inputStream = m_httpsUrlConnection.getInputStream();
             }
             
-            int kar; 
-            char ch;
-            while ( (kar = m_inputStream.read () ) != -1 )
+            BufferedReader in = new BufferedReader(new InputStreamReader(m_inputStream, "UTF-8"));
+            String readLine;
+
+            while ((readLine = in.readLine()) != null) 
             {
-              ch = (char) kar; responseBuffer.append(ch);
+                responseBuffer.append(readLine);
             }
-            m_inputStream.close();
-            
+
             return new String(responseBuffer);
         }
         catch(IOException e)

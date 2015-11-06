@@ -3,6 +3,9 @@ package com.nfbsoftware.diffbot;
 import java.net.URLEncoder;
 import java.util.List;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import com.nfbsoftware.diffbot.model.Article;
 import com.nfbsoftware.diffbot.model.ArticleResponse;
 import com.nfbsoftware.diffbot.model.ErrorResponse;
@@ -21,6 +24,8 @@ import flexjson.JSONDeserializer;
  */
 public class DiffBotClient
 {
+    private static final Log logger = LogFactory.getLog(DiffBotClient.class);
+    
     private String m_accessToken;
     private String m_requestTimeout;
     
@@ -36,6 +41,8 @@ public class DiffBotClient
     {
         m_accessToken = accessToken;
         m_requestTimeout = "30000";
+        
+        logger.debug("Diffbot timeout configuration: " + m_requestTimeout + "ms");
     }
     
     /**
@@ -47,6 +54,8 @@ public class DiffBotClient
     {
         m_accessToken = accessToken;
         m_requestTimeout = timeoutMilliseconds;
+        
+        logger.debug("Diffbot timeout configuration: " + m_requestTimeout + "ms");
     }
     
     /**
@@ -72,6 +81,8 @@ public class DiffBotClient
      */
     public ArticleResponse getArticleResponse(String pageUrl) throws Exception
     {
+        logger.debug("Processing Article Request for " + pageUrl);
+        
         String apiResponse = getApiResponse(DIFFBOT_ARTICLE_API, pageUrl);
         
         // Process the JSON response into an object we can use
@@ -104,6 +115,8 @@ public class DiffBotClient
      */
     public ImageResponse getImageResponse(String pageUrl) throws Exception
     {
+        logger.debug("Processing Image Request for " + pageUrl);
+        
         String apiResponse = getApiResponse(DIFFBOT_IMAGE_API, pageUrl);
         
         // Process the JSON response into an object we can use
@@ -136,6 +149,8 @@ public class DiffBotClient
      */
     public VideoResponse getVideoResponse(String pageUrl) throws Exception
     {
+        logger.debug("Processing Video Request for " + pageUrl);
+        
         String apiResponse = getApiResponse(DIFFBOT_VIDEO_API, pageUrl);
         
         // Process the JSON response into an object we can use
@@ -156,11 +171,13 @@ public class DiffBotClient
     {
         WebPost webPostUtil = new WebPost();
         
+        logger.debug("Connecting to DiffBot API");
         String fullApiUrl = apiUrl + "?token=" + m_accessToken + "&timeout=" + m_requestTimeout + "&url=" + URLEncoder.encode(pageUrl, "UTF-8");
         webPostUtil.connect(fullApiUrl, "text/html; charset=utf-8", "GET");
         
         // Get the response for the API
         String apiResponse = webPostUtil.receive();
+        logger.debug("Diffbott API Response: " + apiResponse);
         
         // Check for an error code
         if(apiResponse.contains("errorCode"))
@@ -168,6 +185,7 @@ public class DiffBotClient
             JSONDeserializer<ErrorResponse> js = new JSONDeserializer<ErrorResponse>();
             ErrorResponse errorResponse = js.deserialize(apiResponse, ErrorResponse.class); 
             
+            logger.equals(errorResponse.getError());
             throw new Exception(errorResponse.getError());
         }
         
