@@ -2,12 +2,13 @@ package com.nfbsoftware.diffbot.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Date;
 
 import com.nfbsoftware.util.NfbUUID;
 import com.nfbsoftware.util.StringUtil;
 
 /**
- * 
+ *
  * @author brendanclemenzi
  */
 public class Article
@@ -23,24 +24,25 @@ public class Article
     private String m_type;
     private String m_resolvedPageUrl;
     private String m_siteName;
-    
+    private Date   m_date;
+
     private List<Tag> m_tags = new ArrayList<Tag>();
     private List<Image> m_images = new ArrayList<Image>();
-    
+
     public String getId()
     {
         if(StringUtil.isNullOrEmpty(m_id))
         {
             m_id = NfbUUID.generateGUID();
         }
-        
+
         return m_id;
     }
     public void setId(String id)
     {
         m_id = id;
     }
-    
+
     public String getAuthor()
     {
         return m_author;
@@ -49,7 +51,7 @@ public class Article
     {
         m_author = author;
     }
-    
+
     public String getText()
     {
         return m_text;
@@ -58,7 +60,7 @@ public class Article
     {
         m_text = text;
     }
-    
+
     public String getTitle()
     {
         return m_title;
@@ -67,7 +69,7 @@ public class Article
     {
         m_title = title;
     }
-    
+
     public String getDiffbotUri()
     {
         return m_diffbotUri;
@@ -76,7 +78,7 @@ public class Article
     {
         m_diffbotUri = diffbotUri;
     }
-    
+
     public String getPageUrl()
     {
         return m_pageUrl;
@@ -85,7 +87,7 @@ public class Article
     {
         m_pageUrl = pageUrl;
     }
-    
+
     public String getHumanLanguage()
     {
         return m_humanLanguage;
@@ -94,7 +96,7 @@ public class Article
     {
         m_humanLanguage = humanLanguage;
     }
-    
+
     public String getHtml()
     {
         return m_html;
@@ -103,7 +105,7 @@ public class Article
     {
         m_html = html;
     }
-    
+
     public String getType()
     {
         return m_type;
@@ -112,7 +114,7 @@ public class Article
     {
         m_type = type;
     }
-    
+
     public String getResolvedPageUrl()
     {
         return m_resolvedPageUrl;
@@ -121,7 +123,7 @@ public class Article
     {
         m_resolvedPageUrl = resolvedPageUrl;
     }
-    
+
     public String getSiteName()
     {
         return m_siteName;
@@ -130,7 +132,7 @@ public class Article
     {
         m_siteName = siteName;
     }
-    
+
     public List<Tag> getTags()
     {
         return m_tags;
@@ -147,5 +149,14 @@ public class Article
     public void setImages(List<Image> images)
     {
         m_images = images;
+    }
+
+    public Date getDate()
+    {
+        return m_date;
+    }
+    public void setDate(Date date)
+    {
+        m_date = date;
     }
 }
