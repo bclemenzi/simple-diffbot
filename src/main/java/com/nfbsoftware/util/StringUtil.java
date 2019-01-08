@@ -24,7 +24,6 @@ import org.apache.commons.lang.StringEscapeUtils;
  * </p>
  *
  * @author Brendan Clemenzi 
- * @email brendan@clemenzi.com
  */
 public class StringUtil
 {
@@ -42,36 +41,16 @@ public class StringUtil
 		'8' , '9' , 'A' , 'B' ,
 		'C' , 'D' , 'E' , 'F' };
 
-   /**
-    * Test if passed string <b>s</b> is <b>null</b> and return an empty
-    * string if true.
-    * @param s A string or null
-    * @return Returns <b>s</b> if it is not null, otherwise returns empty
-    * string.
-    */
    public static String emptyIfNull(String s)
    {
        return s != null ? s : EMPTY_STRING;
    }
 
-   /**
-    * Test if passed string <b>s</b> is <b>null</b> and return the default
-    * string passed in if true.
-    * @param s A string or null
-    * @return Returns <b>s</b> if it is not null, otherwise returns empty
-    * string.
-    */
    public static String replaceIfNull(String s, String defaultValue)
    {
        return (!isNullOrEmpty(s)) ? s : defaultValue;
    }
 
-   /**
-    * Test if passed string <b>s</b> is an empty string and return null
-    * if true.
-    * @param s A string or null
-    * @return Returns <b>s</b> if it is not empty, otherwise returns null.
-    */
    public static String nullIfEmpty(String s)
    {
        if (s != null)
@@ -85,13 +64,7 @@ public class StringUtil
 
        return s;
    }
-
-   /**
-    * Test if passed string <b>s</b> is an empty string (after being trimmed
-    * of leading/trailing whitespace) and return null if true.
-    * @param s A string or null
-    * @return Returns <b>s</b> if it is not empty, otherwise returns null.
-    */
+   
    public static String nullIfEmptyTrim(String s)
    {
        if (s != null)
@@ -106,11 +79,6 @@ public class StringUtil
        return s;
    }
 
-   /**
-    * Test if passed string <b>s</b> is an empty string or null.
-    * @param s A string or null
-    * @return If null or empty, return true, else return false.
-    */
    public static boolean isNullOrEmpty(String s)
    {
        if ((s == null) || (s.length() == 0)) {
@@ -120,12 +88,6 @@ public class StringUtil
        return false;
    }
 
-   /**
-    * Test if passed string <b>s</b> is an empty string or null
-    * (after being trimmed)
-    * @param s A string or null
-    * @return If null or empty, return true, else return false.
-    */
    public static boolean isNullOrEmptyTrim(String s)
    {
        if (s == null) {
@@ -140,13 +102,6 @@ public class StringUtil
        return false;
    }
 
-	/**
-	 *
-	 * @param str
-	 * @param oldsubstr
-	 * @param newsubstr
-	 * @return
-	 */
 	public static String replaceSubstr(String str, String oldsubstr, String newsubstr)
 	{
 		int substrPos = 0;
@@ -199,16 +154,6 @@ public class StringUtil
 		return (result);
 	}
 
-	/**
-	 * Replaces characters that are not allowed in a Java style
-	 * string literal with their escape characters.
-	 * Quote ("), single quote ('), new line (\n), carriage return (\r),
-	 * and backslash (\), and tab (\t) are replaced.
-	 *
-	 * @param s String to be escaped
-	 * @return  String
-	 * @throws NullPointerException if s is null.
-	 */
 	public static String replaceJavaLiteral(String s){
 		int length = s.length();
 		int newLength = length;
@@ -262,13 +207,6 @@ public class StringUtil
 		return sb.toString();
 	}
 
-	/**
-	 * If the first string is not null or empty it trims it
-	 * else it returns the second string
-	 * @param value
-	 * @param other
-	 * @return if not null or empty returns value else it returns other.
-	 */
 	public static String OnEmptyUseOther(String value, String other)
 	{
 	    //Is it empty?
@@ -280,16 +218,6 @@ public class StringUtil
 	    return value.trim();
 	}
 
-	/**
-	 * Used to add character padding before the string value.  Helps with form layouts.
-	 *
-	 * @param stringValue
-	 * @param paddingChar
-	 * @param paddingLength
-	 * @return
-	 *
-	 * @author Brendan Clemenzi
-	 */
     public static String stringPaddingBefore(String stringValue, String paddingChar, int paddingLength)
     {
         StringBuffer buffer = new StringBuffer(128);
@@ -304,16 +232,6 @@ public class StringUtil
         return buffer.toString();
     }
 
-    /**
-     * Used to add character padding after the string value.  Helps with form layouts.
-     *
-     * @param stringValue
-     * @param paddingChar
-     * @param paddingLength
-     * @return
-     *
-     * @author Brendan Clemenzi
-     */
     public static String stringPaddingAfter(String stringValue, String paddingChar, int paddingLength)
     {
         StringBuffer buffer = new StringBuffer(128);
@@ -327,23 +245,6 @@ public class StringUtil
         return buffer.toString();
     }
 
-    /**
-     * Parses a <B>tokenString</B> into a String array of sub-strings
-     * which are separated by characters in the <b>separators</b> string.
-     * There is no escape sequence in the input string.
-     * @param tokenString A string containing sub-strings separated by zero
-     * or more separator characters. Can't be null. <br>
-     * Example: "A/B,C.D"
-     * @param separators A string of characters which separate the
-     * sub-strings in the tokenString. Can be null or empty.<br>
-     * Example: "/\\|,"
-     * <i>NOTE:</i> Multiple consecutive separators are treated as a single
-     * separator which means that you will never have "empty" entries in
-     * the output array.
-     * <i>NOTE:</i> If there is only one separator character, this function is
-     * <b>much</b> faster.
-     * @return A string array of each of the non-empty sub-strings in the path.
-     */
     public static String[] parseString(String tokenString, String separators)
     {
         // Get the character array from the string for fast index lookups.
@@ -436,11 +337,6 @@ public class StringUtil
         return tokenArray;
     }
 
-	/**
-	 *
-	 * @param b
-	 * @return
-	 */
 	public static String toHexString( byte[] b )
 	{
 		StringBuffer sb = new StringBuffer( b.length * 2 );
@@ -457,11 +353,6 @@ public class StringUtil
 		return sb.toString();
 	}
 
-    /**
-     *
-     * @param inputString
-     * @return
-     */
     public static String stringPreview(String inputString)
     {
         String tmpString = "";
@@ -478,13 +369,6 @@ public class StringUtil
         return tmpString;
     }
 
-    /**
-     * Check for a string, if an exception is thrown return default value.
-     *
-     * @param s
-     * @param defaultValue
-     * @return
-     */
     public static String replaceIfNullOrError(String s, String defaultValue)
     {
         String tmpString = EMPTY_STRING;
@@ -501,12 +385,6 @@ public class StringUtil
         return tmpString;
     }
 
-    /**
-     * Strip out HTML tags.  Leave plain/text content.  HREFs in links will be removed
-     *
-     * @param html
-     * @return
-     */
 	public static String stripHTML (String html)
 	{
 		if (html == null || html.isEmpty())

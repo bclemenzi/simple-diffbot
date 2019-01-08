@@ -33,10 +33,6 @@ public class DiffBotClient
     private static final String DIFFBOT_IMAGE_API = "http://api.diffbot.com/v3/image";
     private static final String DIFFBOT_VIDEO_API = "http://api.diffbot.com/v3/video";
     
-    /**
-     * 
-     * @param accessToken for the diffbot API
-     */
     public DiffBotClient(String accessToken)
     {
         m_accessToken = accessToken;
@@ -45,11 +41,6 @@ public class DiffBotClient
         logger.debug("Diffbot timeout configuration: " + m_requestTimeout + "ms");
     }
     
-    /**
-     * 
-     * @param accessToken for the diffbot API
-     * @param timeoutMilliseconds
-     */
     public DiffBotClient(String accessToken, String timeoutMilliseconds)
     {
         m_accessToken = accessToken;
@@ -57,28 +48,14 @@ public class DiffBotClient
         
         logger.debug("Diffbot timeout configuration: " + m_requestTimeout + "ms");
     }
-    
-    /**
-     * <p>Returns an object that represents the Article being extracted from the given page url.</p>
-     * 
-     * @param pageUrl
-     * @return Article
-     * @throws Exception
-     */
+
     public Article getArticle(String pageUrl) throws Exception
     {
         ArticleResponse restApiResponse = getArticleResponse(pageUrl);
         
         return restApiResponse.getObjects().get(0);
     }
-    
-    /**
-     * <p>Returns the full response object for the article extracted from the given url</p>
-     * 
-     * @param pageUrl
-     * @return ArticleResponse
-     * @throws Exception
-     */
+
     public ArticleResponse getArticleResponse(String pageUrl) throws Exception
     {
         logger.debug("Processing Article Request for " + pageUrl);
@@ -91,14 +68,7 @@ public class DiffBotClient
         
         return restApiResponse;
     }
-    
-    /**
-     * <p>Returns an object list that represents the images being extracted from the given page url.</p>
-     * 
-     * @param pageUrl
-     * @return List<Image>
-     * @throws Exception
-     */
+
     public List<Image> getImages(String pageUrl) throws Exception
     {
         ImageResponse restApiResponse = getImageResponse(pageUrl);
@@ -106,13 +76,6 @@ public class DiffBotClient
         return restApiResponse.getObjects();
     }
     
-    /**
-     * <p>Returns the full response object for the images extracted from the given url</p>
-     * 
-     * @param pageUrl
-     * @return ImageResponse
-     * @throws Exception
-     */
     public ImageResponse getImageResponse(String pageUrl) throws Exception
     {
         logger.debug("Processing Image Request for " + pageUrl);
@@ -126,27 +89,13 @@ public class DiffBotClient
         return restApiResponse;
     }
 
-    /**
-     * <p>Returns an object that represents the Video being extracted from the given page url.</p>
-     * 
-     * @param pageUrl
-     * @return Video
-     * @throws Exception
-     */
     public Video getVideo(String pageUrl) throws Exception
     {
         VideoResponse restApiResponse = getVideoResponse(pageUrl);
         
         return restApiResponse.getObjects().get(0);
     }
-    
-    /**
-     * <p>Returns the full response object for the video extracted from the given url</p>
-     * 
-     * @param pageUrl
-     * @return VideoResponse
-     * @throws Exception
-     */
+
     public VideoResponse getVideoResponse(String pageUrl) throws Exception
     {
         logger.debug("Processing Video Request for " + pageUrl);
@@ -159,14 +108,7 @@ public class DiffBotClient
         
         return restApiResponse;
     }
-    
-    /**
-     * 
-     * @param diffBotApi
-     * @param pageUrl
-     * @return
-     * @throws Exception
-     */
+
     private String getApiResponse(String apiUrl, String pageUrl) throws Exception
     {
         WebPost webPostUtil = new WebPost();

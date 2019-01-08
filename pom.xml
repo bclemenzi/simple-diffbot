@@ -4,7 +4,7 @@
 
   	<groupId>com.nfbsoftware</groupId>
   	<artifactId>simple-diffbot</artifactId>
-  	<version>1.0.14</version>
+  	<version>1.0.15</version>
   	<packaging>jar</packaging>
 
   	<name>NFB Software Simple-Diffbot</name>
@@ -97,7 +97,7 @@
       		<plugin>
         		<groupId>org.sonatype.plugins</groupId>
         		<artifactId>nexus-staging-maven-plugin</artifactId>
-        		<version>1.6</version>
+        		<version>1.6.6</version>
         		<extensions>true</extensions>
         		<configuration>
           			<serverId>oss.sonatype.org</serverId>

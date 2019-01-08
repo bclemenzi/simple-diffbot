@@ -6,28 +6,17 @@ import java.util.Random;
 /**
  * 
  * @author Brendan Clemenzi
- * @email brendan@clemenzi.com
  *
  */
 public class NfbUUID
 {
-    /**
-     * Generate a UUID that can be used for unguessable ids; for example, primary keys in the database.
-     *  
-     * @return
-     */
     public static String generateGUID()
     {
         UUID uid = UUID.randomUUID();
         
         return uid.toString();
     }
-    
-    /**
-     * 
-     * @param length
-     * @return
-     */
+
     public static String generateGUIDOfLength(int length)
     {
         String uidStr = "";
@@ -45,12 +34,7 @@ public class NfbUUID
         
         return uidStr;
     }
-    
-    /**
-     * Generate a random unique id to be used visual ids; for example, public user profiles.
-     * 
-     * @return
-     */
+
     public static long generateUniqueNumber() throws Exception
     {
         final Random gen = new Random();
@@ -61,12 +45,7 @@ public class NfbUUID
         
         return parts;
     }
-    
-    /**
-     * Generate a random unique id to be used visual ids; for example, public user profiles.
-     * 
-     * @return
-     */
+
     public static long generateUniqueNumber(int size) throws Exception
     {
         final Random gen = new Random();

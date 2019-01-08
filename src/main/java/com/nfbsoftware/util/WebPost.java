@@ -29,35 +29,6 @@ import org.apache.commons.codec.binary.Base64;
  * This class is responsible for posting to remote Web Server using HTTP or
  * HTTPS and getting a response back. The Web server must send a response back
  * and must set content length field in HTML header.
- * 
- * <P/>
- * Sample code for HTTP:
- * 
- * <Pre/>
- * WebPost poster = new WebPost();
- * 
- * <Pre/>
- * poster.connect("http://localhost:81","username","password");
- * 
- * <Pre/>
- * poster.post("Hello Wolrd!");
- * 
- * <Pre/>
- * String response = poster.receive();
- * 
- * <Pre/>
- * poster.disconnect();
- * <P/>
- * Sample code for HTTPS:<Pre/>
- *       WebPost poster = new WebPost();
- * <Pre/>
- *       poster.secureConnect("https://localhost:81","username","password");
- * <Pre/>
- *       poster.securePost("Hello Wolrd!");
- * <Pre/>
- *       String response = poster.secureReceive();
- * <Pre/>
- *       poster.secureDisconnect();
  *       
  * @author brendanclemenzi
  */
@@ -92,12 +63,6 @@ public class WebPost
 
     } };
 
-    /**
-     * Post the input string to the remote web server.
-     * 
-     * @param sRequest
-     *            String to be posted
-     */
     public void post(String sRequest) throws Exception
     {
         try
@@ -117,12 +82,6 @@ public class WebPost
 
     }
 
-    /**
-     * Post the input string to the remote web server.
-     * 
-     * @param sRequest
-     *            String to be posted
-     */
     public void securePost(String sRequest) throws Exception
     {
         try
@@ -142,40 +101,16 @@ public class WebPost
 
     }
 
-    /**
-     * Connect to Web Server.
-     * 
-     * @param url
-     *            Web Server URL
-     */
     public void connect(String url) throws Exception
     {
         connect(url, null, "POST", null);
     }
 
-    /**
-     * Connect to Web Server using username and password.
-     * 
-     * @param username
-     *            User name
-     * @param password
-     *            Password
-     * @param url
-     *            Web Server URL
-     */
     public void connect(String username, String password, String url, String requestMethod) throws Exception
     {
         connect(username, password, url, null, requestMethod);
     }
 
-    /**
-     * Post input to web server using content type.
-     * 
-     * @param url
-     *            Web server URL
-     * @param contentType
-     *            Context type, like text/xml.
-     */
     public void connect(String url, String contentType, String requestMethod) throws Exception
     {
         try
@@ -208,14 +143,6 @@ public class WebPost
         }
     }
 
-    /**
-     * Post input to web server using content type.
-     * 
-     * @param url
-     *            Web server URL
-     * @param contentType
-     *            Context type, like text/xml.
-     */
     public void secureConnect(String url, String contentType, String requestMethod) throws Exception
     {
         try
@@ -263,18 +190,6 @@ public class WebPost
         }
     }
 
-    /**
-     * Post input to web server using user name, password, and content type.
-     * 
-     * @param username
-     *            User name
-     * @param password
-     *            Password
-     * @param url
-     *            Web server URL
-     * @param contentType
-     *            Context type, like text/xml.
-     */
     public void connect(String username, String password, String url, String contentType, String requestMethod) throws Exception
     {
         try
@@ -320,12 +235,6 @@ public class WebPost
         }
     }
 
-    /**
-     * This method gets a HTTP header field.
-     * 
-     * @param header
-     * @return
-     */
     public String getHeaderProperty(String header)
     {
         String headerValue = "";
@@ -338,11 +247,6 @@ public class WebPost
         return headerValue;
     }
 
-    /**
-     * 
-     * @param header
-     * @return
-     */
     public List<String> getHeaderPropertyList(String header)
     {
         List<String> headerList = new ArrayList<String>();
@@ -366,23 +270,11 @@ public class WebPost
         return headerList;
     }
 
-    /**
-     * 
-     * @return
-     */
     public Map<String, List<String>> getHeaderProperties()
     {
         return m_httpUrlConnection.getHeaderFields();
     }
 
-    /**
-     * This method sets a HTTP header field.
-     * 
-     * @param header
-     *            Header string
-     * @param value
-     *            Header value
-     */
     public void setHeaderProperty(String header, String value)
     {
         if (header == null)
@@ -398,12 +290,6 @@ public class WebPost
         m_httpUrlConnection.setRequestProperty(key, value);
     }
 
-    /**
-     * 
-     * @param requestParameters
-     * @throws UnsupportedEncodingException
-     * @throws IOException
-     */
     private void addRequestParameters(String requestParameters) throws UnsupportedEncodingException, IOException
     {
         if (!StringUtil.isNullOrEmpty(requestParameters))
@@ -416,16 +302,6 @@ public class WebPost
         }
     }
 
-    /**
-     * Retrieve response from the web server. HTML header's content length field
-     * must be set.
-     * 
-     * @throws Exception
-     *             When fail to retrieve response from web server or the
-     *             retrieved content does not match content length set in the
-     *             HTML header field.
-     * @return Retrieved response
-     */
     public String receive() throws Exception
     {
         try
@@ -480,12 +356,6 @@ public class WebPost
         }
     }
 
-    /**
-     * Disconnect from the web server.
-     * 
-     * @throws xception
-     *             When fail to disconnect from the web server
-     */
     public void disconnect() throws Exception
     {
         try
@@ -540,9 +410,6 @@ public class WebPost
         }
     }
 
-    /**
-     * Make sure we have closed the connection
-     */
     protected void finalize()
     {
         try
